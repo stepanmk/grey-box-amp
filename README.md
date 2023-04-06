@@ -1,1 +1,1 @@
-# stepanmk.github.io-grey-box-amp
+# grey-box-amp
