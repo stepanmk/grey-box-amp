@@ -7,7 +7,7 @@ import { Icon } from '@iconify/vue';
 
 <div id="main-container" class="min-h-screen flex justify-center">
 
-    <div id="content" class="flex flex-col items-start justify-start p-5 gap-2 xl:px-[18rem] max-w-[120rem]">
+    <div id="content" class="flex flex-col items-start justify-start p-8 gap-2 xl:px-[18rem] max-w-[120rem]">
 
         <p class="text-4xl font-semibold">Neural Grey-Box Guitar Amplifier Modelling with Limited Data</p>
 
@@ -32,7 +32,7 @@ import { Icon } from '@iconify/vue';
         supervised learning.</p>
 
         <p class="w-full font-semibold mt-4">Resources</p>
-        <div class="w-full flex flex-row gap-4">
+        <div class="w-full flex flex-col xl:flex-row gap-4">
             <a href="" class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
                 <Icon icon="ph:file-text" width="32"/>
                 <p class="font-semibold">Paper</p>
