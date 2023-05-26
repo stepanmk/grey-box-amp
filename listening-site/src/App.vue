@@ -5,7 +5,7 @@ import { Icon } from '@iconify/vue';
 
 <template>
 
-<div id="main-container" class="min-h-screen flex flex-col items-start justify-start py-16 gap-2 px-[5rem] xl:px-[20rem]">
+<div id="main-container" class="min-h-screen flex flex-col items-start justify-start py-16 gap-2 px-[5rem]">
 
     <p class="text-4xl font-semibold">Neural Grey-Box Guitar Amplifier Modelling with Limited Data</p>
 
@@ -31,20 +31,20 @@ import { Icon } from '@iconify/vue';
 
     <p class="w-full font-semibold mt-4">Resources</p>
     <div class="w-full flex flex-row gap-4">
-        <button class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+        <a href="" class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
             <Icon icon="ph:file-text" width="32"/>
             <p class="font-semibold">Paper</p>
-        </button>
+        </a>
 
-        <button class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+        <a href="https://github.com/stepanmk/grey-box-amp/tree/master/python" class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
             <Icon icon="ph:github-logo" width="32"/>
             <p class="font-semibold">Code</p>
-        </button>
+        </a>
         
-        <button class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+        <a href="https://zenodo.org/record/7970723" class="pl-2 pr-4 h-10 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
             <Icon icon="ph:file-audio" width="32"/>
             <p class="font-semibold">Dataset</p>
-        </button>
+        </a>
     </div>
 
     <p class="w-full font-semibold mt-4">Listening examples</p>
