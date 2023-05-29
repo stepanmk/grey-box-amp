@@ -16,9 +16,11 @@ onMounted(() => {
 
 function addAllSounds()
 {    
-    let selectedFiles = [4, 5, 8, 1, 2, 3];
+    let selectedFiles = [4, 8, 3, 7, 9, 1, 2, 5];
     addSetting(selectedFiles, 'B1_M3_T7', 'setting-1');
     addSetting(selectedFiles, 'B10_M0_T0', 'setting-2');
+    addSetting(selectedFiles, 'B3_M7_T1', 'setting-3');
+    addSetting(selectedFiles, 'B0_M0_T10', 'setting-4');
 
 }
 
@@ -138,7 +140,13 @@ function addSetting(selectedFiles, settingName, elementName)
         <div id="setting-1" class="w-full grid grid-cols-8 gap-y-2 border-b pb-2"></div>
         
         <ModelNames title="Bass: 10, Middle: 0, Treble: 0 (MUSHRA setting 2)"></ModelNames>
-        <div id="setting-2" class="w-full grid grid-cols-8 gap-y-2 border-b pb-2"></div>     
+        <div id="setting-2" class="w-full grid grid-cols-8 gap-y-2 border-b pb-2"></div>
+        
+        <ModelNames title="Bass: 3, Middle: 7, Treble: 1"></ModelNames>
+        <div id="setting-3" class="w-full grid grid-cols-8 gap-y-2 border-b pb-2"></div>  
+
+        <ModelNames title="Bass: 0, Middle: 0, Treble: 10"></ModelNames>
+        <div id="setting-4" class="w-full grid grid-cols-8 gap-y-2 border-b pb-2"></div>  
     
     </div>
 </div>
