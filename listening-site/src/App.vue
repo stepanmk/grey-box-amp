@@ -255,7 +255,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
 
         <!-- mid -->
         <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Treble varied from 0 to 10, with Bass and Middle set to 5 in all cases.</p>
-        <div class="w-full flex flex-row justify-around mt-4 pb-2 border-b">
+        <div class="w-full flex flex-row justify-around">
             <p class="w-[7rem]"></p>
             <p class="flex items-center justify-center rounded-md w-[7rem] bg-neutral-200">Treble: 0</p>
             <p class="flex items-center justify-center rounded-md w-[7rem] bg-neutral-200">Treble: 2</p>
