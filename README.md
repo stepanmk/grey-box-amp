@@ -1,1 +1,1 @@
-# Neural Grey-Box Guitar Amplifier Moddeling with Limited Data
+# Neural Grey-Box Guitar Amplifier Modelling with Limited Data
