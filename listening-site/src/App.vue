@@ -55,11 +55,11 @@ function addEval(settings, elementName, modelName)
         let modelSound = document.createElement('audio');
         if (modelName === '')
         {
-            modelSound.src = `./src/assets/audio/add/${settingName}/${settingName}_G5_file_9.wav`;
+            modelSound.src = `./audio/add/${settingName}/${settingName}_G5_file_9.wav`;
         }
         else
         {
-            modelSound.src = `./src/assets/audio/add/${settingName}/${modelName}_${settingName}_G5_file_9.wav`;
+            modelSound.src = `./audio/add/${settingName}/${modelName}_${settingName}_G5_file_9.wav`;
         }
         modelSound.controls = 'controls';
         modelSound.style.width = '7rem';
@@ -88,7 +88,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         setting.appendChild(inputDiv);
 
         let inputSound = document.createElement('audio');
-        inputSound.src = `./src/assets/audio/${settingName}/${settingName}_G5_file_${file}_input.wav`
+        inputSound.src = `./audio/${settingName}/${settingName}_G5_file_${file}_input.wav`
         inputSound.controls = 'controls';
         inputSound.style.width = '7rem';
         inputSound.style.height = '2rem';
@@ -101,7 +101,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         setting.appendChild(refDiv);
 
         let refSound = document.createElement('audio');
-        refSound.src = `./src/assets/audio/${settingName}/${settingName}_G5_file_${file}.wav`
+        refSound.src = `./audio/${settingName}/${settingName}_G5_file_${file}.wav`
         refSound.controls = 'controls';
         refSound.style.width = '7rem';
         refSound.style.height = '2rem';
@@ -115,7 +115,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         setting.appendChild(modelDiv);
 
         let modelSound = document.createElement('audio');
-        modelSound.src = `./src/assets/audio/${settingName}/${modelName}_${settingName}_G5_file_${file}.wav`
+        modelSound.src = `./audio/${settingName}/${modelName}_${settingName}_G5_file_${file}.wav`
         modelSound.controls = 'controls';
         modelSound.style.width = '7rem';
         modelSound.style.height = '2rem';
