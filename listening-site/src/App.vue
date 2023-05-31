@@ -25,20 +25,20 @@ function addAllSounds()
     addSetting(selectedFiles, 'B0_M0_T10', 'setting-4', models);
     addSetting(selectedFiles, 'B10_M0_T10', 'setting-5', models);
 
-    let settings = ['B0_M5_T5', 'B2_M5_T5', 'B4_M5_T5', 'B6_M5_T5', 'B8_M5_T5', 'B10_M5_T5']
+    let settings = ['B0_M5_T5', 'B2_M5_T5', 'B4_M5_T5', 'B6_M5_T5', 'B8_M5_T5', 'B10_M5_T5'];
     addEval(settings, 'setting-6', '');
-    addEval(settings, 'setting-7', '1_target_LSTM40_pwr_GRU8')
-    addEval(settings, 'setting-8', '3_targets_LSTM40_pwr_GRU8')
+    addEval(settings, 'setting-7', '1_target_LSTM40_pwr_GRU8');
+    addEval(settings, 'setting-8', '3_targets_LSTM40_pwr_GRU8');
 
-    settings = ['B5_M0_T5', 'B5_M2_T5', 'B5_M4_T5', 'B5_M6_T5', 'B5_M8_T5', 'B5_M10_T5']
+    settings = ['B5_M0_T5', 'B5_M2_T5', 'B5_M4_T5', 'B5_M6_T5', 'B5_M8_T5', 'B5_M10_T5'];
     addEval(settings, 'setting-9', '');
-    addEval(settings, 'setting-10', '1_target_LSTM40_pwr_GRU8')
-    addEval(settings, 'setting-11', '3_targets_LSTM40_pwr_GRU8')
+    addEval(settings, 'setting-10', '1_target_LSTM40_pwr_GRU8');
+    addEval(settings, 'setting-11', '3_targets_LSTM40_pwr_GRU8');
 
-    settings = ['B5_M5_T0', 'B5_M5_T2', 'B5_M5_T4', 'B5_M5_T6', 'B5_M5_T8', 'B5_M5_T10']
+    settings = ['B5_M5_T0', 'B5_M5_T2', 'B5_M5_T4', 'B5_M5_T6', 'B5_M5_T8', 'B5_M5_T10'];
     addEval(settings, 'setting-12', '');
-    addEval(settings, 'setting-13', '1_target_LSTM40_pwr_GRU8')
-    addEval(settings, 'setting-14', '3_targets_LSTM40_pwr_GRU8')
+    addEval(settings, 'setting-13', '1_target_LSTM40_pwr_GRU8');
+    addEval(settings, 'setting-14', '3_targets_LSTM40_pwr_GRU8');
 }
 
 function addEval(settings, elementName, modelName)
@@ -55,11 +55,11 @@ function addEval(settings, elementName, modelName)
         let modelSound = document.createElement('audio');
         if (modelName === '')
         {
-            modelSound.src = `./src/assets/audio/add/${settingName}/${settingName}_G5_file_9.wav`
+            modelSound.src = `./src/assets/audio/add/${settingName}/${settingName}_G5_file_9.wav`;
         }
         else
         {
-            modelSound.src = `./src/assets/audio/add/${settingName}/${modelName}_${settingName}_G5_file_9.wav`
+            modelSound.src = `./src/assets/audio/add/${settingName}/${modelName}_${settingName}_G5_file_9.wav`;
         }
         modelSound.controls = 'controls';
         modelSound.style.width = '7rem';
@@ -131,7 +131,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
 
 <div id="main-container" class="min-h-screen flex justify-center">
 
-    <div id="content" class="flex flex-col items-start justify-start p-8 gap-2 px-[22rem] max-w-[120rem]">
+    <div id="content" class="flex flex-col items-start justify-start p-8 gap-2 max-w-[75rem]">
 
         <p class="text-4xl font-semibold">Neural Grey-Box Guitar Amplifier Modelling with Limited Data</p>
 
@@ -206,7 +206,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         </p>
 
         <!-- bass -->
-        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Bass varied from 0 to 10, with Middle and Treble set to 5 in all cases.</p>
+        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Bass control varied from 0 to 10, with Middle and Treble controls set to 5 in all cases.</p>
         <div class="w-full flex flex-row justify-around">
             <p class="w-[7rem]"></p>
             <p class="flex items-center justify-center rounded-md w-[7rem] bg-neutral-200">Bass: 0</p>
@@ -230,7 +230,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         </div>
 
         <!-- mid -->
-        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Middle varied from 0 to 10, with Bass and Treble set to 5 in all cases.</p>
+        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Middle control varied from 0 to 10, with Bass and Treble controls set to 5 in all cases.</p>
         <div class="w-full flex flex-row justify-around">
             <p class="w-[7rem]"></p>
             <p class="flex items-center justify-center rounded-md w-[7rem] bg-neutral-200">Middle: 0</p>
@@ -254,7 +254,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         </div>
 
         <!-- mid -->
-        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Treble varied from 0 to 10, with Bass and Middle set to 5 in all cases.</p>
+        <p class="w-full text-base flex items-center justify-center mt-4 font-semibold border-b">Treble control varied from 0 to 10, with Bass and Middle controls set to 5 in all cases.</p>
         <div class="w-full flex flex-row justify-around">
             <p class="w-[7rem]"></p>
             <p class="flex items-center justify-center rounded-md w-[7rem] bg-neutral-200">Treble: 0</p>
