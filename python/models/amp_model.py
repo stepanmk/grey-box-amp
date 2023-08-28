@@ -4,8 +4,8 @@ import pytorch_lightning as pl
 import loss_funcs
 from models.nl_block import NLAmp
 from models.ts_block import ToneStack
-
 from matplotlib import pyplot as plt
+from utils.ir_funcs import get_ir, get_freq_resp
 import numpy as np
 
 import os
@@ -151,6 +151,7 @@ class AmpModel(pl.LightningModule):
         self.tone_stack.resize_tensors(self.batch_size_val)
 
     def on_test_epoch_start(self):
+        self.tone_stack.init(self.batch_size_val)
         self.tone_stack.resize_tensors(self.batch_size_val)
 
     def on_validation_end(self):
@@ -158,11 +159,12 @@ class AmpModel(pl.LightningModule):
         if not self.rnn_only:
             wandb.log({'components': self.tone_stack.get_component_values()})
         if self.final_val and not self.rnn_only:
+            self.plot_pot_tapers()
             wandb.log({'components_best': self.tone_stack.get_component_values()})
 
     def on_test_epoch_end(self):
         if self.sweeps_eval:
-            pass
+            self.plot_mag_responses()
         else:
             self.per_cond_losses(stage='test')
 
@@ -321,15 +323,15 @@ class AmpModel(pl.LightningModule):
             self.calc_vlosses(outputs, targets, set_type, log=False)
             # save audio from best val
             self.save_audio(set_type, total_steps, split_size, inputs, targets, outputs, settings_names)
-            wandb.log({f'{self.lf}_{set_type}_per_cond_best': loss_dict})
-            wandb.log({f'STFT_{set_type}_per_cond_best': loss_dict_spectral})
+            # wandb.log({f'{self.lf}_{set_type}_per_cond_best': loss_dict})
+            # wandb.log({f'STFT_{set_type}_per_cond_best': loss_dict_spectral})
             # best val losses for metrics dict
             self.metrics_dict[f'{self.lf}_{set_type}_per_cond_best'] = loss_dict_save
             self.metrics_dict[f'STFT_{set_type}_per_cond_best'] = loss_dict_spectral_save
-        else:
-            # loss per cond (epoch)
-            wandb.log({f'{self.lf}_{set_type}_per_cond': loss_dict})
-            wandb.log({f'STFT_{set_type}_per_cond': loss_dict_spectral})
+        # else:
+        #     # loss per cond (epoch)
+        #     # wandb.log({f'{self.lf}_{set_type}_per_cond': loss_dict})
+        #     # wandb.log({f'STFT_{set_type}_per_cond': loss_dict_spectral})
         if stage == 'val':
             self.val_inputs, self.val_outputs, self.val_targets = [], [], []
         else:
@@ -379,5 +381,78 @@ class AmpModel(pl.LightningModule):
                 # input, output, target
                 audio_list.append(seg_list)
             c += 1
-        audio_table = wandb.Table(columns=['input', 'output', 'target'], data=audio_list)
-        wandb.log({f'audio_{set_type}': audio_table})
+        # audio_table = wandb.Table(columns=['input', 'output', 'target'], data=audio_list)
+        # wandb.log({f'audio_{set_type}': audio_table})
+
+    def plot_mag_responses(self):
+        settings_names = self.trainer.test_dataloaders[0].dataset.settings_names
+        fs = self.sr
+        samples = self.truncated_bptt_steps
+        f, (ax1, ax2) = plt.subplots(2, 1, figsize=(9, 8))
+        output_irs = []
+        target_irs = []
+        for i in range(self.test_inputs[0].shape[0]):
+            clean_sweep = self.test_inputs[0][i, :, :]
+            output_sweep = self.test_outputs[0][i, :, :]
+            target_sweep = self.test_targets[0][i, :, :]
+            ir_output = get_ir(clean_sweep.squeeze().cpu().numpy(), output_sweep.squeeze().cpu().numpy())
+            ir_target = get_ir(clean_sweep.squeeze().cpu().numpy(), target_sweep.squeeze().cpu().numpy())
+            output_irs.append(ir_output)
+            target_irs.append(ir_target)
+            freq_out, resp_db_out = get_freq_resp(x=ir_output[int(2.5 * fs) - samples: int(2.5 * fs) + samples], fs=fs)
+            freq_target, resp_db_target = get_freq_resp(x=ir_target[int(2.5 * fs) - samples: int(2.5 * fs) + samples],
+                                                        fs=fs)
+            ax1.semilogx(freq_target, resp_db_target, label=f'{settings_names[i]}', linewidth=1)
+            ax2.semilogx(freq_out, resp_db_out, label=f'{settings_names[i]}', linewidth=1)
+        ax1.set_xlim([20, 20000])
+        ax2.set_xlim([20, 20000])
+        ax1.set_ylim([-60, -10])
+        ax2.set_ylim([-60, -10])
+        ax1.grid(which='both')
+        ax2.grid(which='both')
+        ax1.set_title('Target')
+        ax2.set_title('Output')
+        ax1.legend(loc='lower right', fontsize=8.5)
+        ax2.legend(loc='lower right', fontsize=8.5)
+        ax1.set_xlabel('Frequency [Hz]')
+        ax2.set_xlabel('Frequency [Hz]')
+        ax1.set_ylabel('Magnitude [dB]')
+        ax2.set_ylabel('Magnitude [dB]')
+        plt.tight_layout()
+        wandb.log({'magnitude_responses': wandb.Image(f)})
+        plt.close()
+        # self.logger.sub_logger.add_figure('magnitude_responses', f, global_step=self.current_epoch, close=True)
+        irs_to_save = {'settings_names': settings_names, 'output_irs': output_irs, 'target_irs': target_irs}
+        with open(f'./logs/tensorboard/{self.log_subfolder}/{self.model_name}/irs.pkl', 'wb') as file:
+            pickle.dump(irs_to_save, file)
+
+    def plot_pot_tapers(self):
+        settings = np.linspace(0, 1., 100)
+        x_bass = torch.linspace(0, 1., 100, device=self.device).unsqueeze(-1)
+        x_mid = torch.linspace(0, 1., 100, device=self.device).unsqueeze(-1)
+        x_treble = torch.linspace(0, 1., 100, device=self.device).unsqueeze(-1)
+        with torch.no_grad():
+            y_bass = self.tone_stack.cond_block.bass_nn(x_bass)
+            y_mid = self.tone_stack.cond_block.mid_nn(x_mid)
+            y_treble = self.tone_stack.cond_block.treble_nn(x_treble)
+        f = plt.figure(figsize=(8, 5))
+        plt.title(f'Input: {self.cond_input}, Process: {self.cond_process}')
+        plt.xlabel('x')
+        plt.ylabel('y')
+        plt.xlim([0., 1.])
+        plt.ylim([0., 1.])
+        plt.grid()
+        plt.plot(settings, y_bass.detach().cpu().numpy().squeeze(), label='BASS')
+        plt.plot(settings, y_mid.detach().cpu().numpy().squeeze(), label='MID')
+        plt.plot(settings, y_treble.detach().cpu().numpy().squeeze(), label='TREBLE')
+        plt.legend()
+        plt.tight_layout()
+        # self.logger.sub_logger.add_figure('pot_tapers', f, global_step=self.current_epoch, close=True)
+        wandb.log({'pot_tapers': wandb.Image(f)})
+        plt.close()
+        tapers_to_save = {'x': settings,
+                          'b': y_bass.detach().cpu().numpy().squeeze(),
+                          'm': y_mid.detach().cpu().numpy().squeeze(),
+                          't': y_treble.detach().cpu().numpy().squeeze()}
+        with open(f'./logs/tensorboard/{self.log_subfolder}/{self.model_name}/tapers.pkl', 'wb') as file:
+            pickle.dump(tapers_to_save, file)

@@ -45,7 +45,7 @@ prsr.add_argument('--reduce_targets', '-rtg', default=1, type=int)
 prsr.add_argument('--single_target', '-st', default=0, type=int)
 prsr.add_argument('--target_file', '-tf', default=0, type=int)
 
-prsr.add_argument('--log_subfolder', '-ls', default='amp_model_fin')
+prsr.add_argument('--log_subfolder', '-ls', default='amp_model')
 
 args = prsr.parse_args()
 
