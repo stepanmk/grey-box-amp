@@ -10,9 +10,9 @@ This paper combines recurrent neural networks (RNNs) with the discretised Kirchh
 
 ### Real-time version
 
-<p align="center">
+<a href="https://github.com/stepanmk/grey-box-amp/tree/master/plugin" align="center">
     <img src="./imgs/plugin.png">
-</p>
+</a>
 
 The ```plugin``` directory contains the source code for the real-time version of the models presented in this work. The VST3 version compiled on Windows is located in the ```plugin/windows_build``` folder. The plugin enables switching between the proposed models (denoted as TS) trained on 4 and 12 minutes of data. The third model (RNN21) is a fully black-box conditioned LSTM model trained on 84 minutes of data.
 
