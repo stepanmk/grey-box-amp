@@ -23,7 +23,7 @@ The ```plugin``` directory contains the source code for the real-time version of
 ```
 @inproceedings{miklanek2023greybox,
     title={Neural Grey-Box Guitar Amplifier Modelling with Limited Data},
-    author={Š. Miklánek and A. Wright and V. Välimäki and Jiří Schimmel},
+    author={Š. Miklánek and A. Wright and V. Välimäki and J. Schimmel},
     booktitle = {Proc. Int. Conf. Digital Audio Effects (DAFx-23)},
     year = {2023},
     address = {Copenhagen, Denmark}, 
