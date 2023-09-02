@@ -136,6 +136,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         <p class="text-4xl font-semibold">Neural Grey-Box Guitar Amplifier Modelling with Limited Data</p>
 
         <p class="w-full">Štěpán Miklánek, Alec Wright, Vesa Välimäki and Jiří Schimmel</p>
+        <p class="w-full font-semibold">Contact address: stepan.miklanek@vut.cz</p>
 
         <p class="w-full font-semibold mt-4 text-lg">Abstract</p>
         
@@ -155,6 +156,10 @@ function addSetting(selectedFiles, settingName, elementName, models)
         model the linear and nonlinear parts of a guitar amplifier using
         supervised learning.</p>
 
+        <div id="vid" class="w-full bg-yellow-50 flex items-center justify-center">
+
+        </div>
+
         <p class="w-full font-semibold mt-4 text-lg">Resources</p>
         <div class="w-full flex flex-col xl:flex-row gap-4">
             <a href="" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
@@ -162,7 +167,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
                 <p class="">Paper</p>
             </a>
 
-            <a href="https://github.com/stepanmk/grey-box-amp/tree/master/python" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+            <a href="https://github.com/stepanmk/grey-box-amp/" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
                 <Icon icon="ph:github-logo" width="26"/>
                 <p class="">Code</p>
             </a>
@@ -172,9 +177,14 @@ function addSetting(selectedFiles, settingName, elementName, models)
                 <p class="">Dataset</p>
             </a>
         </div>
+
+        <p class="w-full font-semibold mt-4 text-lg">Real-time version</p>
+        <a href="https://github.com/stepanmk/grey-box-amp/tree/master/plugin" class="w-full flex justify-center">
+            <img src="./assets/plugin.png" alt="">
+        </a>
         
-        <div id="mobile-only" class="lg:hidden font-semibold mt-5 text-lg">
-            The listening examples only work on larger screens. Try to use landscape orientation.
+        <div id="mobile-only" class="lg:hidden font-semibold mt-4 text-lg">
+            The listening examples only work on larger screens.
         </div>
         <div id="hideable" class="hidden lg:flex flex-col items-start justify-start gap-2">
             <p class="w-full font-semibold mt-4 text-lg">Listening examples (unseen tone stack settings)</p>
