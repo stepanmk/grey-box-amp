@@ -162,14 +162,14 @@ function addSetting(selectedFiles, settingName, elementName, models)
 
         <p class="w-full font-semibold mt-4 text-lg">Resources</p>
         <div class="w-full flex flex-col xl:flex-row gap-4">
+            <a href="https://github.com/stepanmk/grey-box-amp/" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+                <Icon icon="ph:github-logo" width="26"/>
+                <p class="">GitHub</p>
+            </a>
+
             <a href="" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
                 <Icon icon="ph:file-text" width="26"/>
                 <p class="">Paper</p>
-            </a>
-
-            <a href="https://github.com/stepanmk/grey-box-amp/" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
-                <Icon icon="ph:github-logo" width="26"/>
-                <p class="">Code</p>
             </a>
             
             <a href="https://zenodo.org/record/7970723" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
@@ -179,7 +179,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
         </div>
 
         <p class="w-full font-semibold mt-4 text-lg">Real-time version</p>
-        <a href="https://github.com/stepanmk/grey-box-amp/tree/master/plugin" class="w-full flex justify-center">
+        <a href="https://github.com/stepanmk/grey-box-amp/tree/main/plugin" class="w-full flex justify-center">
             <img src="./assets/plugin.png" alt="">
         </a>
         
