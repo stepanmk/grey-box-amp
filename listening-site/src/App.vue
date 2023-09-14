@@ -167,7 +167,7 @@ function addSetting(selectedFiles, settingName, elementName, models)
                 <p class="">GitHub</p>
             </a>
 
-            <a href="" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
+            <a href="https://www.dafx.de/paper-archive/2023/DAFx23_paper_52.pdf" class="pl-2 pr-4 h-9 flex flex-row items-center justify-center gap-1 bg-neutral-600 rounded-lg hover:bg-neutral-900 text-white">
                 <Icon icon="ph:file-text" width="26"/>
                 <p class="">Paper</p>
             </a>
